@@ -9,10 +9,13 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -26,6 +29,17 @@ import com.geocar.bluetooth.SocketHandler;
 
 public class StartMenu extends Activity implements OnClickListener, SocketHandler  {
 	
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		if( item.getItemId() == R.id.action_settings ){
+			//This is the settings			
+			Intent intent = new Intent(this, PrefActivity.class);
+			startActivity(intent);
+			
+		}
+		return super.onMenuItemSelected(featureId, item);
+	}
+
 	private static String BTH_DEVICE_NAME = "GeoCar";	
 	private static String SPP_UUID = "00001101-0000-1000-8000-00805F9B34FB";
 	private ImageButton mConnectButton;
@@ -163,6 +177,7 @@ public class StartMenu extends Activity implements OnClickListener, SocketHandle
 		((Button)findViewById(R.id.button2)).setOnClickListener(this);;
 		
 		setStatus(false);
+		
 	}
 
 	@Override

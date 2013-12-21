@@ -8,5 +8,32 @@
     <string name="title_section3">Section 3</string>
     <string name="loading">Loading</string>
     <string name="press_to_start">Press Connect to Start</string>
-
+    <string name="title_edittext_preference">Edit text preference</string>
+    <string name="summary_edittext_security_code">Enter secret security code</string>
+    <string name="dialog_title_edittext_preference">Enter your favorite animal</string>
+    <string name="title_checkbox_preference">Checkbox preference</string>
+    <string name="summary_checkbox_preference">This is a checkbox</string>
+    <string name="inline_preferences">In-line preferences</string>
+    <string name="dialog_based_preferences">Dialog-based preferences</string>
+    <string name="launch_preferences">Launch preferences</string>
+    <string name="preference_attributes">Preference attributes</string>
+    <string name="title_list_preference">List preference</string>
+    <string name="summary_list_preference">An example that uses a list dialog</string>
+    <string name="dialog_title_list_preference">Choose one</string>
+    <string name="title_fragment_preference">Fragment preference</string>
+    <string name="summary_fragment_preference">Shows another fragment of preferences</string>
+    <string name="title_intent_preference">Intent preference</string>
+    <string name="summary_intent_preference">Launches an Activity from an Intent</string>
+    <string name="title_my_preference">My preference</string>
+    <string name="summary_my_preference">This is a custom counter preference</string>
+    <string name="title_advanced_toggle_preference">Haunted preference</string>
+    <string name="summary_on_advanced_toggle_preference">I\'m on! :)</string>
+    <string name="summary_off_advanced_toggle_preference">I\'m off! :(</string>
+    <string name="title_enable_sms_security">Enable SMS Security code</string>
+    <string name="summary_enable_sms_security">Wait for security code from SMS message and send disturb signal to GeoCar</string>
+    <string name="title_child_preference">Child checkbox preference</string>
+    <string name="summary_child_preference">This is visually a child</string>
+    <string name="security_code">Security Code</string>
+    <string name="title_security_code">Configure Security SMS code</string>
+    
 </resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <PreferenceCategory
+            android:title="@string/security_code">
+
+        <CheckBoxPreference
+                android:key="parent_security_preference"
+                android:title="@string/title_enable_sms_security"
+                android:summary="@string/summary_enable_sms_security" />
+        
+        <EditTextPreference
+                android:key="sms_security_code"
+                android:layout="?android:attr/preferenceLayoutChild"
+                android:dependency="parent_security_preference"
+                android:title="@string/title_security_code"
+                android:summary="@string/summary_edittext_security_code"
+                android:dialogTitle="@string/summary_edittext_security_code" />
+                
+        <ListPreference
+                android:key="list_preference"
+                android:title="@string/title_list_preference"
+                android:summary="@string/summary_list_preference"
+                android:entries="@array/entries_list_preference"
+                android:entryValues="@array/entryvalues_list_preference"
+                android:dialogTitle="@string/dialog_title_list_preference" />
+
+    </PreferenceCategory>
+
+    
+</PreferenceScreen>
