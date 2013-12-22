@@ -37,22 +37,29 @@ public class ConnectThread extends Thread {
             // until it succeeds or throws an exception
             mmSocket.connect();
             
+            onConnected(mmSocket);
         } catch (IOException connectException) {
             // Unable to connect; close the socket and get out
             try {
                 mmSocket.close();
+                mmSocket = null;
             } catch (IOException closeException) { }
             return;
         }
  
-        // Do work to manage the connection (in a separate thread)
-        mHandler.onBthConnect(mmSocket);
+       
     }
  
     /** Will cancel an in-progress connection, and close the socket */
     public void cancel() {
         try {
             mmSocket.close();
+            mmSocket = null;
         } catch (IOException e) { }
+    }
+    
+    protected void onConnected(BluetoothSocket socket){
+    	 // Do work to manage the connection (in a separate thread)
+        mHandler.onBthConnect(socket);
     }
 }

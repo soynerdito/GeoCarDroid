@@ -22,6 +22,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.geocar.bluetooth.AlertType;
+import com.geocar.bluetooth.BthDeviceManager;
 import com.geocar.bluetooth.ConnectThread;
 import com.geocar.bluetooth.ConnectedThread;
 import com.geocar.bluetooth.ConnectionHandler;
@@ -39,12 +41,15 @@ public class StartMenu extends Activity implements OnClickListener, SocketHandle
 		}
 		return super.onMenuItemSelected(featureId, item);
 	}
-
-	private static String BTH_DEVICE_NAME = "GeoCar";	
-	private static String SPP_UUID = "00001101-0000-1000-8000-00805F9B34FB";
 	private ImageButton mConnectButton;
+	
+	/*private static String BTH_DEVICE_NAME = "GeoCar";	
+	private static String SPP_UUID = "00001101-0000-1000-8000-00805F9B34FB";
+	
 	// Get the default adapter
 	private BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+	*/
+	
 	private int REQUEST_ENABLE_BT = 2;
 	private ConnectedThread mConnThread;
 	private ConnectThread mConnection;
@@ -142,7 +147,7 @@ public class StartMenu extends Activity implements OnClickListener, SocketHandle
 		}
 	} ;
 	
-	private BluetoothDevice getDevice(String name){
+	/*private BluetoothDevice getDevice(String name){
 		Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
 		// If there are paired devices
 		if (pairedDevices.size() > 0) {
@@ -154,7 +159,7 @@ public class StartMenu extends Activity implements OnClickListener, SocketHandle
 		    }
 		}
 		return null;
-	}
+	}*/
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -162,11 +167,9 @@ public class StartMenu extends Activity implements OnClickListener, SocketHandle
 		setContentView(R.layout.start_menu);
 		onStopLoading();
 		
-		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-		if (mBluetoothAdapter == null) {
-		    // Device does not support Bluetooth
-		}
-		if (!mBluetoothAdapter.isEnabled()) {
+		BthDeviceManager manager = new BthDeviceManager();
+		
+		if (!manager.isEnabled()) {
 		    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
 		    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
 		}
@@ -202,9 +205,11 @@ public class StartMenu extends Activity implements OnClickListener, SocketHandle
 				mConnection = null;
 				setStatus(false);
 			}else{
-				BluetoothDevice device = getDevice(BTH_DEVICE_NAME);
+				BthDeviceManager manager = new BthDeviceManager();
+				BluetoothDevice device = manager.getGeoCar();
+				//BluetoothDevice device = getDevice(BTH_DEVICE_NAME);
 				if( device != null ){
-					 mConnection = new ConnectThread(device, SPP_UUID, this);
+					 mConnection = new ConnectThread(device, BthDeviceManager.SPP_UUID, this);
 					 mConnection.start();
 				}
 			}

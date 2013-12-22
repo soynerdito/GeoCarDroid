@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 
+import com.geocar.bluetooth.AlertType;
 import com.geocar.geocarconnect.GeoCarAlert;
 import com.geocar.geocarconnect.Settings;
 
@@ -23,7 +24,7 @@ public class SmsListener extends BroadcastReceiver{
             String msgFrom;
             if (bundle != null){
                 //---retrieve the SMS message received---
-                try{
+                try{                	
                 	GeoCarAlert alertHandler = new GeoCarAlert(context);
                     Object[] pdus = (Object[]) bundle.get("pdus");
                     msgs = new SmsMessage[pdus.length];
@@ -33,7 +34,7 @@ public class SmsListener extends BroadcastReceiver{
                         String msgBody = msgs[i].getMessageBody();
                         if( msgBody.equals(Settings.getSMSSecurityCode(context)) ){
                         	//Trigger Alarm
-                        	alertHandler.onDistressAlart(msgFrom);
+                        	alertHandler.onMessageReceived(msgFrom, AlertType.TURN_OFF);
                         }
                         
                     }
